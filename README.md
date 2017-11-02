@@ -6,7 +6,8 @@ THis script discribes a highthrough method for toxin gene searching in BT's geno
 ### 2.Profigal
 ### 3.Blast+
 
-usage: ToxinFinderPy.py [-h] -i INPUT_FILES [INPUT_FILES ...] -db LOCAL_DB -o
+## Usage 
+ToxinFinderPy.py [-h] -i INPUT_FILES [INPUT_FILES ...] -db LOCAL_DB -o
                         OUTPUT_FILES [-t THREADS_NUM]
 a script to find the toxin gene in BT's genome or metagenome
 optional arguments:
@@ -24,7 +25,8 @@ optional arguments:
 ## NCBIBLAST_and_parse.py
 This script enbale to run NCBI Blast automatically
 
-usage: NCBIBLAST_and_parse.py [-h] [-i INPUT_FASTA [INPUT_FASTA ...]] -o OUTPUT_DIR
+## usage
+NCBIBLAST_and_parse.py [-h] [-i INPUT_FASTA [INPUT_FASTA ...]] -o OUTPUT_DIR
 
 a script to running NCBI blast automated
 
