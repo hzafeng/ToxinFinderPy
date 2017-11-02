@@ -23,28 +23,29 @@ def check_arguments(arguments):
            sys.exit(1)
 args = vars(parser.parse_args())
 
-print "********************Start**************************************************"
+print "**********************************************************************"
+
 order_makedb = 'makeblastdb'+' -in '+args['local_db'][0]+' -out '+'known_gene '+'-dbtype '+'prot'
 subprocess.call(order_makedb,shell = True)
 aa_files=[];blast_outs=[]
 for f in args["input_files"]:
    
    genome_name = f.split('/')[-1].split('.fasta')[0]
-   print genome_name
+
    log = genome_name+'.log'
    protein_file = genome_name+'_aa.fasta'
    aa_files.append(protein_file)
    prodigal_order =  'prodigal'+' -i '+f+' -c'+' -m'+' -g'+' 11'+' -f'+' gbk'+' -q'+' -o'+' ' +log+' -a '+' '+protein_file
-   print prodigal_order
+
    subprocess.call(prodigal_order,shell = True)
    out_fn = genome_name +'.blast.out'    
    order1 = 'blastp'+' -query '+protein_file+' -db'+' known_gene'+' -evalue'+' 10'+' -num_alignments'+' 5'+' -outfmt'+' 6'+' -num_threads '+args['threads_num'][0]+' -out '+out_fn
-   print order1
+
    blast_outs.append(out_fn)
    subprocess.call(order1,shell = True)
 dict_all =''
 for fi in aa_files:
-   of = open(f1,'r')
+   of = open(fi,'r')
    dict_all += of.read()
    of.close()
 dict_ = dict_all.split('>')
@@ -117,5 +118,3 @@ excert()
 
 print 'done^_^'
 
-
-print 'done^_^'
