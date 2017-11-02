@@ -36,8 +36,15 @@ for f in args["input_files"]:
    protein_file = genome_name+'_aa.fasta'
    aa_files.append(protein_file)
    prodigal_order =  'prodigal'+' -i '+f+' -c'+' -m'+' -g'+' 11'+' -f'+' gbk'+' -q'+' -o'+' ' +log+' -a '+' '+protein_file
-
    subprocess.call(prodigal_order,shell = True)
+    
+   faa  =  open(protein_file,'r')
+   all_fa = faa.read().replace('>','>'+genome_name)
+   faa.close()
+   faas = open(protein_file,'w')
+   faas.write(all_fa)
+   faas.close()
+
    out_fn = genome_name +'.blast.out'    
    order1 = 'blastp'+' -query '+protein_file+' -db'+' known_gene'+' -evalue'+' 10'+' -num_alignments'+' 5'+' -outfmt'+' 6'+' -num_threads '+args['threads_num'][0]+' -out '+out_fn
 
