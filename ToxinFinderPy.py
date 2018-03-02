@@ -46,7 +46,7 @@ for f in args["input_files"]:
    faas.close()
 
    out_fn = genome_name +'.blast.out'    
-   order1 = 'blastp'+' -query '+protein_file+' -db'+' known_gene'+' -evalue'+' 10'+' -num_alignments'+' 5'+' -outfmt'+' 6'+' -num_threads '+args['threads_num'][0]+' -out '+out_fn
+   order1 = 'blastp'+' -query '+protein_file+' -db'+' known_gene'+' -evalue'+' 10e-5'+' -num_alignments'+' 5'+' -outfmt'+' 6'+' -num_threads '+args['threads_num'][0]+' -out '+out_fn
 
    blast_outs.append(out_fn)
    subprocess.call(order1,shell = True)
@@ -86,7 +86,7 @@ def excert():
                 leng_query = len(dict1[each_[0]])
                 leng_target = each_[1].split('_len')[-1]
                 bi = format(float(leng_query)/float(leng_target),'.2f')
-                cov = format(float(each_line[3])/float(length_query),'.2f')
+                cov = format(float(each_line[2])/float(length_query),'.2f')
                 if float(bi) > 0.6 and float(cov) > 0.5:
                     if float(each_[2]) > 95 :
                         str4 += '>'
